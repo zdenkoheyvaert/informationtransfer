@@ -28,9 +28,10 @@ def fourier(X, par, f):
 
     elif par == 2:
         L = np.zeros((n, 2*nn))
-        k = 0
+        k = -1
         for i in range(m):
             for j in range(i+1,m):
+                k += 1
                 L[:,k] = center(np.cos(X[i,:]-X[j,:]))
                 L[:,k+nn] = center(np.sin(X[i,:]-X[j,:]))
     
@@ -53,8 +54,7 @@ def fourier(X, par, f):
             L[:,i+m] = center(np.sin(X[i,:]))
             L[:,i+2*m] = center(np.cos(2*X[i,:]))
             L[:,i+3*m] = center(np.sin(2*X[i,:]))
-        k = 4*m - 1
-        for i in range(m):
+            k = 4*m - 1
             for j in range(i+1,m):
                 k += 1
                 L[:,k] = center(np.cos(X[i,:]-X[j,:]))
