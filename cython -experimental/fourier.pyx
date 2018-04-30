@@ -101,9 +101,10 @@ def fourier(XX, int par, float f):
 
     elif par == 2:
         L = np.empty((n, 2*nn))
-        k = 0
+        k = -1
         for i in range(m):
             for j in range(i+1,m):
+                k += 1
                 L[:,k] = center(cosa(subtract(X[i,:],X[j,:])))
                 L[:,k+nn] = center(sina(subtract(X[i,:],X[j,:])))
     
@@ -126,8 +127,7 @@ def fourier(XX, int par, float f):
             L[:,i+m] = center(sina(X[i,:]))
             L[:,i+2*m] = center(cosa(add(X[i,:],X[i,:])))
             L[:,i+3*m] = center(sina(add(X[i,:],X[i,:])))
-        k = 4*m - 1
-        for i in range(m):
+            k = 4*m - 1
             for j in range(i+1,m):
                 k += 1
                 L[:,k] = center(cosa(subtract(X[i,:],X[j,:])))
